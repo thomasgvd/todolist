@@ -1,10 +1,17 @@
 package com.thomasgvd.todolist.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "app_user")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.StringIdGenerator.class,
+        property="id")
 public class MyUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,13 +19,16 @@ public class MyUser {
     private String userName;
     private String password;
     private boolean active;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "user_role",
         joinColumns = @JoinColumn(name = "user_id"),
         inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<MyRole> roles;
+
     @OneToMany(mappedBy = "user")
+    @JsonManagedReference
     private Set<MyTask> tasks;
 
     public int getId() {

@@ -1,5 +1,7 @@
 package com.thomasgvd.todolist.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +13,15 @@ public class MyTask {
     private String description;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private MyUser user;
+
+    public MyTask() {
+    }
+
+    public MyTask(MyUser user) {
+        this.user = user;
+    }
 
     public int getId() {
         return id;

@@ -1,10 +1,16 @@
 package com.thomasgvd.todolist.models;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "app_permission")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.StringIdGenerator.class,
+        property="id")
 public class MyPermission {
 
     @Id
