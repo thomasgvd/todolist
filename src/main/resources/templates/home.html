@@ -16,19 +16,21 @@
     </div>
     <table class="table table-bordered" style="width:100%">
         <tr>
-            <th>ID</th>
-            <th>Description</th>
-            <th>Update</th>
-            <th>Delete</th>
+            <th style="width: 80%">Description</th>
+            <th style="width: 10%">Update</th>
+            <th style="width: 10%">Delete</th>
         </tr>
         <tr th:each="task : ${tasks}">
-            <td th:text="${task.id}"></td>
             <td th:text="${task.description}"></td>
             <td>update</td>
-            <td>delete</td>
+            <td>
+                <form class="float-right" th:action="@{/tasks/{taskId}/delete(taskId=${task.id})}" th:method="delete">
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                </form>
+            </td>
         </tr>
     </table>
-    <form class="float-right" th:action="@{/api/users/{id}/tasks(id=${userId})}" method="post">
+    <form class="float-right" th:action="@{/users/{userId}/tasks(userId=${userId})}" method="post">
         <input type="submit" class="btn btn-success" value="New Task" />
     </form>
 </div>

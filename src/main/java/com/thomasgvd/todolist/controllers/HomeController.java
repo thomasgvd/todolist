@@ -13,7 +13,7 @@ import java.security.Principal;
 public class HomeController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
     @GetMapping("/")
     public String home(Model model, Principal principal) {

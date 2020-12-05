@@ -12,12 +12,17 @@ import org.springframework.stereotype.Service;
 public class TaskService {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
     @Autowired
-    TaskRepository taskRepository;
+    private TaskRepository taskRepository;
 
     public MyTask createTask(int userId) {
         MyUser user = userRepository.findById(userId).orElseThrow(() -> new UsernameNotFoundException("User not found."));
         return taskRepository.save(new MyTask(user));
+    }
+
+    public void deleteTask(int taskId) {
+        MyTask task = taskRepository.findById(taskId).orElseThrow(() -> new UsernameNotFoundException("Task not found."));
+        taskRepository.delete(task);
     }
 }
