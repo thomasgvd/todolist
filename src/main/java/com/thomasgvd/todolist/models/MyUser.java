@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,7 +30,7 @@ public class MyUser {
 
     @OneToMany(mappedBy = "user")
     @JsonManagedReference
-    private Set<MyTask> tasks;
+    private List<MyTask> tasks;
 
     public int getId() {
         return id;
@@ -71,11 +72,11 @@ public class MyUser {
         this.roles = roles;
     }
 
-    public Set<MyTask> getTasks() {
+    public List<MyTask> getTasks() {
         return tasks;
     }
 
-    public void setTasks(Set<MyTask> tasks) {
+    public void setTasks(List<MyTask> tasks) {
         this.tasks = tasks;
     }
 }

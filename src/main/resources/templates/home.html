@@ -22,9 +22,13 @@
         </tr>
         <tr th:each="task : ${tasks}">
             <td th:text="${task.description}"></td>
-            <td>update</td>
             <td>
-                <form class="float-right" th:action="@{/tasks/{taskId}/delete(taskId=${task.id})}" th:method="delete">
+                <form th:action="@{/tasks/{taskId}/form(taskId=${task.id})}" method="get">
+                    <input type="submit" class="btn btn-warning" value="Update" />
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/tasks/{taskId}/delete(taskId=${task.id})}" th:method="delete">
                     <input type="submit" class="btn btn-danger" value="Delete" />
                 </form>
             </td>

@@ -25,4 +25,12 @@ public class TaskService {
         MyTask task = taskRepository.findById(taskId).orElseThrow(() -> new UsernameNotFoundException("Task not found."));
         taskRepository.delete(task);
     }
+
+    public MyTask getTask(int taskId) {
+        return taskRepository.findById(taskId).orElseThrow(() -> new UsernameNotFoundException("Task not found."));
+    }
+
+    public MyTask updateTask(MyTask task) {
+        return taskRepository.save(task);
+    }
 }
